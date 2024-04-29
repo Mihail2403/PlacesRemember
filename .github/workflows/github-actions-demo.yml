@@ -27,9 +27,9 @@ jobs:
           - 5432:5432
 
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python
+        uses: actions/setup-python@v2
         with:
           python-version: 3.12
       - name: Install Dependencies
