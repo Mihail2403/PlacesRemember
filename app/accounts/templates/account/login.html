@@ -1,20 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
-  </head>
-  <body>
-    <a href="/login/vk-oauth2"
-      ><img
-        src="/static/lvk.png"
-        class="avatar-3"
-        data-toggle="tooltip"
-        title="Login via VKontakte"
-    /></a>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link
+    rel="stylesheet"
+    href="{% static 'account/css/login.css' %}"
+  />
+  <title>Document</title>
+</head>
+<body>
+  <div class="container" id="wind-container">
+    <div class="row justify-content-center" id="base-row">
+      <div class="col-4">
+        <div onclick="document.location='/login/vk-oauth2'">
+          Login via Vkotakte
+          <img
+            src="{% static 'account/vk.png' %}"
+            class="avatar-3"
+            width=70
+            height=70
+            data-toggle="tooltip"
+            title="Login via VKontakte"
+          />
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</body>
 </html>

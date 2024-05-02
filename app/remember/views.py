@@ -1,12 +1,11 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 from .models import Remember
 from . import forms
 
-
+@login_required(login_url='/accounts')
 def new_remember(request):
     """View creating new remember"""
-    if not request.user.is_authenticated:
-        return redirect("/accounts")
     if request.method == "POST":
         user = request.user
         form = forms.Remember(request.POST)
@@ -23,10 +22,11 @@ def new_remember(request):
         form = forms.Remember()
     return render(request, "remember/new_remember.html", {"form": form})
 
-
+@login_required(login_url='/')
 def full_remember(request, id: int):
     """Full info about the remember"""
     remember = Remember.objects.filter(user=request.user).filter(id=id).values_list()
     ctx = {"remember": remember, "is_true": len(remember) > 0}
 
     return render(request, "remember/full_remember.html", ctx)
+
