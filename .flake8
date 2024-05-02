@@ -5,4 +5,5 @@ exclude =
     .github,
     __pycache__,
     venv
+    migrations
 max-line-length = 88
