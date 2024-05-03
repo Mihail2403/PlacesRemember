@@ -1,4 +1,5 @@
 {% extends "account/layout.html" %}
+{% load static %}
 
 {% block title %}
 djcdjnc
@@ -15,36 +16,45 @@ djcdjnc
 {% block btn_content %}logout{% endblock btn_content %}
 {% block body %}
 <div class="container">
+  <div id="data" style="dusplay:none" data-json="{{ remembers_for_json }}"></div>
   <div class="row justify-content-center">
-    <div class="col-10" onclick="document.location='/remember/new'" style=" padding:1vh; margin: 1vh auto;">
+    <div class="col-6">
       <div class="container">
+        <div class="row ">
+          <div class="col-10" onclick="document.location='/remember/new'" style=" padding:1vh; margin: 1vh auto;">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-6">
+                  <button class="btn btn-outline-dark" onclick="document.location='/remember/{{ i.0 }}'">Create New Remember</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% for i in remembers %} 
         <div class="row justify-content-center">
-          <div class="col-3">
-            <button class="btn btn-outline-dark" onclick="document.location='/remember/{{ i.0 }}'">Create New Remember</button>
+          <div class="col-12" style="border: 2px solid black; border-radius: 10px; padding:1vh; margin-top: 1vh;">
+            <div class="container">
+              <div class="row justify-content-end">
+                <div class="col-3">
+                  {{ i.1|truncatechars:5 }}
+                </div>
+                <div class="col-7" style="color: gray;">
+                  {{ i.2|truncatechars:9 }}...
+                </div>
+                <div class="col-2">
+                  <button class="btn btn-outline-dark" onclick="document.location='/remember/{{ i.0 }}'">full</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        {% endfor %}
       </div>
     </div>
-  </div>
-  {% for i in remembers %} 
-  <div class="row justify-content-center">
-    <div class="col-12" style="border: 2px solid black; border-radius: 10px; padding:1vh; margin-top: 1vh;">
-      <div class="container">
-        <div class="row justify-content-end">
-          <div class="col-2">
-            {{ i.1 }}
-          </div>
-          <div class="col-9" style="color: gray;">
-            {{ i.2|truncatechars:9 }}...
-          </div>
-          <div class="col-1">
-            <button class="btn btn-outline-dark" onclick="document.location='/remember/{{ i.0 }}'">full</button>
-          </div>
-        </div>
-      </div>
+    <div class="col-6">
+      <div id="map"></div>
     </div>
   </div>
-  {% endfor %}
 </div>
-
 {% endblock body %}

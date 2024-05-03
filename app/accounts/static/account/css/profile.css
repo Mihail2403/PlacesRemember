@@ -11,3 +11,10 @@
     border-radius: 10px; 
     padding:1vh;
 }
+#map{
+    margin-top: 1vh;
+    height: 50vh;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-left: 1vh;
+}

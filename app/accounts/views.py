@@ -1,3 +1,4 @@
+import json
 import requests
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
@@ -43,6 +44,10 @@ def profile(request):
         "photo_link": img.img,
         "remembers": remembers,
     }
+    ctx["remembers_for_json"] = json.dumps(
+        list(remembers),
+        ensure_ascii=False,
+    )
     return render(request, "account/profile.html", ctx)
 
 
