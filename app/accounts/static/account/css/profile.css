@@ -6,3 +6,8 @@
 #user-name-text{
     font-size: 18px;
 }
+#bnt-new{
+    border: 2px solid black; 
+    border-radius: 10px; 
+    padding:1vh;
+}

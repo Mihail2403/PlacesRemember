@@ -16,15 +16,35 @@ djcdjnc
 {% block body %}
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12">
-      <a href="/remember/new">новый</a><br />
-      {% for i in remembers %} {{ i.1 }}<br />
-      <div class="remember">
-        <a href="/remember/{{ i.0 }}">full</a>
+    <div class="col-10" onclick="document.location='/remember/new'" style=" padding:1vh; margin: 1vh auto;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-3">
+            <button class="btn btn-outline-dark" onclick="document.location='/remember/{{ i.0 }}'">Create New Remember</button>
+          </div>
+        </div>
       </div>
-      {% endfor %}
     </div>
   </div>
+  {% for i in remembers %} 
+  <div class="row justify-content-center">
+    <div class="col-12" style="border: 2px solid black; border-radius: 10px; padding:1vh; margin-top: 1vh;">
+      <div class="container">
+        <div class="row justify-content-end">
+          <div class="col-2">
+            {{ i.1 }}
+          </div>
+          <div class="col-9" style="color: gray;">
+            {{ i.2|truncatechars:9 }}...
+          </div>
+          <div class="col-1">
+            <button class="btn btn-outline-dark" onclick="document.location='/remember/{{ i.0 }}'">full</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 
 {% endblock body %}

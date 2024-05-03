@@ -2,12 +2,11 @@ import requests
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
-
 from social_django.models import UserSocialAuth
 
 from remember.models import Remember
-
 from .models import Image
+
 
 @login_required(login_url="/accounts")
 def profile(request):
@@ -52,6 +51,7 @@ def start(request):
     if request.user.is_authenticated:
         return redirect("profile/")
     return render(request, "account/login.html")
+
 
 def logout(request):
     auth_logout(request)
