@@ -5,8 +5,8 @@ services:
     container_name: app
     build: .
     environment:
-      - SOCIAL_AUTH_VK_OAUTH2_KEY=51914636
-      - SOCIAL_AUTH_VK_OAUTH2_SECRET=KsIahwOKfKHm5mkYqyUT
+      - SOCIAL_AUTH_VK_OAUTH2_KEY=51934322
+      - SOCIAL_AUTH_VK_OAUTH2_SECRET=KsIahwdkdkdkskdkdk
     command: sh -c "python app/manage.py makemigrations
       && python app/manage.py migrate
       && python app/manage.py collectstatic --no-input
