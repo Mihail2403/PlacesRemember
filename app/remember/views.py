@@ -30,7 +30,7 @@ def new_remember(request):
     return render(request, "remember/new_remember.html", {"form": form})
 
 
-@login_required(login_url='/')
+@login_required(login_url='/accounts')
 def full_remember(request, id: int):
     """Full info about the remember"""
     if request.user.is_staff:
