@@ -18,6 +18,12 @@ input, textarea{
     float: right;
     margin-top: 2vh;
 }
+
+#delete-btn{
+    float: left;
+    margin-top: 2vh;
+}
+
 #header{
     padding-bottom: 2vh;
     text-align: center;

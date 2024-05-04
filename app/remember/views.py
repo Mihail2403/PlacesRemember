@@ -34,7 +34,8 @@ def new_remember(request):
 @login_required(login_url='/accounts')
 def full_remember(request, id: int):
     """Full info about the remember"""
-    if request.user.is_staff:
+    user = request.user
+    if user.is_staff:
         print(
             "Вам необходимо войти от имени автоирзованного через \
                 вк пользователя (не root - выйдете с его аккаунта)"
@@ -42,7 +43,6 @@ def full_remember(request, id: int):
         return redirect("/admin")
     rem = Remember.objects.filter(id=id).values_list()
     if request.method == "POST" and rem:
-        user = request.user
         form = forms.Remember(request.POST)
         if form.is_valid():
             rem.update(
@@ -55,8 +55,18 @@ def full_remember(request, id: int):
     else:
         form = forms.Remember()
     ctx = {
+        "id": id,
         "form": form,
-        "is_true": len(rem)>0,
+        "is_true": len(rem) > 0,
         "json_remember": json.dumps(list(rem), ensure_ascii=False)
     }
     return render(request, "remember/full_remember.html", ctx)
+
+
+@login_required(login_url="/accounts")
+def delete(request, id):
+    user = request.user
+    remember = Remember.objects.filter(user=user).filter(id=id).first()
+    if remember:
+        remember.delete()
+    return redirect("/accounts/profile")
