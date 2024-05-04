@@ -9,24 +9,41 @@
     rel="stylesheet"
     href="{% static 'account/css/login.css' %}"
   />
-  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <title>Login</title>
 </head>
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 id="header">
+          <b>
+            The app for saving impressions of their visited places
+          </b>
+        </h1>
+      </div>
+    </div>
+  </div>
   <div class="container" id="wind-container">
-    <div class="row justify-content-center" id="base-row">
-      <div class="col-4">
-        <div onclick="document.location='/login/vk-oauth2'">
-          Login via Vkotakte
-          <img
+    <div class="row justify-content-center">
+      <div class="col">
+        <h5 id="login-header">
+          LOGIN
+        </h5>
+      </div>
+    </div>
+    <div class="row justify-content-center" id="base-row">  
+      <div id="login-btn" onclick="document.location='/login/vk-oauth2'">
+        <span id="text-btn">Login via Vkotakte</span>
+        <img
             src="{% static 'account/vk.png' %}"
-            class="avatar-3"
             width=70
             height=70
             data-toggle="tooltip"
             title="Login via VKontakte"
           />
-        </div>
-        
       </div>
     </div>
   </div>

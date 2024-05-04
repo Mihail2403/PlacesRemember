@@ -7,6 +7,12 @@ from . import forms
 @login_required(login_url='/accounts')
 def new_remember(request):
     """View creating new remember"""
+    if request.user.is_staff:
+        print(
+            "Вам необходимо войти от имени автоирзованного через \
+                вк пользователя (не root - выйдете с его аккаунта)"
+        )
+        return redirect("/admin")
     if request.method == "POST":
         user = request.user
         form = forms.Remember(request.POST)
@@ -27,6 +33,12 @@ def new_remember(request):
 @login_required(login_url='/')
 def full_remember(request, id: int):
     """Full info about the remember"""
+    if request.user.is_staff:
+        print(
+            "Вам необходимо войти от имени автоирзованного через \
+                вк пользователя (не root - выйдете с его аккаунта)"
+        )
+        return redirect("/admin")
     remember = Remember.objects.filter(user=request.user).filter(id=id).values_list()
     ctx = {"remember": remember, "is_true": len(remember) > 0}
 
