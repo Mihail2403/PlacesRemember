@@ -24,7 +24,8 @@ def profile(request):
     user = request.user
 
     # if user has no image in db, get it from VK.com
-    if not Image.objects.filter(user=user).first():
+    img = Image.objects.filter(user=user).first()
+    if not img:
         user_social_auth = UserSocialAuth.objects.filter(user=user).first()
         params = {
             "fields": "photo_max",
@@ -33,12 +34,10 @@ def profile(request):
         }
         r = requests.get("https://api.vk.com/method/users.get", params=params)
         photo_link = r.json().get("response")[0].get("photo_max")
-        Image.objects.create(
+        img = Image.objects.create(
             user=user,
             img=photo_link,
         )
-
-    img = Image.objects.get(user=user)
     remembers = Remember.objects.filter(user=user)
     ctx = {
         "first_name": user.first_name,
