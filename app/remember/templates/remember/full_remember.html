@@ -25,8 +25,12 @@
   </head>
   <body>
     <div class="container" id="base-container">
-      {% if is_true %}
-      <div style="display:none;" id="json-remember" data-json="{{ json_remember }}"></div>
+      {% if rem_exists %}
+      <div
+        style="display: none"
+        id="json-remember"
+        data-json="{{ json_remember }}"
+      ></div>
       <div class="row justify-content-center">
         <div class="col-12">
           <div class="container">

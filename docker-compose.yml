@@ -1,12 +1,12 @@
-version: "3.9"
+version: "3"
 
 services:
   app:
     container_name: app
     build: .
     environment:
-      - SOCIAL_AUTH_VK_OAUTH2_KEY=51934322
-      - SOCIAL_AUTH_VK_OAUTH2_SECRET=KsIahwdkdkdkskdkdk
+      - SOCIAL_AUTH_VK_OAUTH2_KEY=51914636
+      - SOCIAL_AUTH_VK_OAUTH2_SECRET=7tr9qkZ18TTQfOeZkjVg
     command: sh -c "python app/manage.py makemigrations
       && python app/manage.py migrate
       && python app/manage.py collectstatic --no-input
@@ -27,7 +27,7 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_PASSWORD=postgres
     expose:
-      - '5432'
+      - "5432"
     volumes:
       - pgdbdata:/var/lib/postgresql/data/
 volumes:

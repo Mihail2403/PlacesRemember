@@ -1,14 +1,16 @@
-import json
 import requests
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 from social_django.models import UserSocialAuth
 
+from remember.decorators import is_not_admin
 from remember.models import Remember
 from .models import Image
 
 
+@is_not_admin
 @login_required(login_url="/accounts")
 def profile(request):
     """Profile view login required"""
@@ -37,17 +39,14 @@ def profile(request):
         )
 
     img = Image.objects.get(user=user)
-    remembers = Remember.objects.filter(user=user).values_list()
+    remembers = Remember.objects.filter(user=user)
     ctx = {
         "first_name": user.first_name,
         "last_name": user.last_name,
         "photo_link": img.img,
         "remembers": remembers,
+        "remembers_for_json": serializers.serialize("json", remembers),
     }
-    ctx["remembers_for_json"] = json.dumps(
-        list(remembers),
-        ensure_ascii=False,
-    )
     return render(request, "account/profile.html", ctx)
 
 

@@ -1,11 +1,10 @@
 from django import forms
+from . import models
 
 
-class Remember(forms.Form):
-    title = forms.CharField(max_length=100)
-    lat = forms.FloatField()
-    long = forms.FloatField()
-    description = forms.CharField(
-        widget=forms.Textarea(attrs={"rows": 3, "cols": 30}),
-        max_length=160,
-    )
+class Remember(forms.ModelForm):
+
+    class Meta:
+        model = models.Remember
+        fields = ["title", "lat", "long", "description", "user"]
+        exclude = ["user"]

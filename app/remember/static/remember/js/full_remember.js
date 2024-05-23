@@ -1,5 +1,5 @@
-var remember = JSON.parse(document.getElementById("json-remember").attributes.getNamedItem("data-json").value)
-var startPoint = [remember[0][3], remember[0][4]]
+var remember = JSON.parse(document.getElementById("json-remember").attributes.getNamedItem("data-json").value)[0].fields
+var startPoint = [remember.lat, remember.long]
 var map = L.map('map').setView(startPoint, 13);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -14,9 +14,9 @@ var lng = document.getElementById("id_long")
 lng.value = startPoint[1]
 
 var title = document.getElementById("id_title")
-title.value = remember[0][1]
+title.value = remember.title
 var desc = document.getElementById("id_description")
-desc.value = remember[0][2]
+desc.value = remember.description
 function onMapClick(e) {
     mark
         .setLatLng(e.latlng)

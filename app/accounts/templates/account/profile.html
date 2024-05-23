@@ -1,63 +1,89 @@
-{% extends "account/layout.html" %}
-{% load static %}
-
-{% block title %}
-Profile
-{% endblock title %} 
-
-{% block img_profile %}
-  {{ photo_link }}
-{% endblock img_profile %}
-
-{% block name %}
-  {{ first_name }} {{ last_name }}
-{% endblock name %}
-{% block btn_url %}/accounts/logout{% endblock btn_url %}
-{% block btn_content %}logout{% endblock btn_content %}
+{% extends "account/layout.html" %} 
+{% load static %} 
+{% block title %} Profile{% endblock title %} 
+{% block img_profile %} {{ photo_link }} {% endblock img_profile %} 
+{% block name %} {{ first_name }} {{ last_name }} {% endblock name %} 
+{% block btn_url %}/accounts/logout{% endblock btn_url %} 
+{% block btn_content %}logout{% endblock btn_content %} 
 {% block body %}
 <div class="container">
-  <div id="data" style="dusplay:none" data-json="{{ remembers_for_json }}"></div>
+  <div
+    id="data"
+    style="dusplay: none"
+    data-json="{{ remembers_for_json }}"
+  ></div>
   <div class="row justify-content-center">
     <div class="col-6">
       <div class="container">
-        <div class="row ">
-          <div class="col-10" onclick="document.location='/remember/new'" style=" padding:1vh; margin: auto; margin-top: 10vh; margin-bottom: 2vh;">
+        <div class="row">
+          <div
+            class="col-10"
+            onclick="document.location='/remember/new'"
+            style="
+              padding: 1vh;
+              margin: auto;
+              margin-top: 10vh;
+              margin-bottom: 2vh;
+            "
+          >
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-6">
-                  <button class="btn btn-outline-dark" onclick="document.location='/remember/{{ i.0 }}'">Create New Remember</button>
+                  <button
+                    class="btn btn-outline-dark"
+                    onclick="document.location='/remember/{{ i.0 }}'"
+                  >
+                    Create New Remember
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
         {% if remembers|length == 0 %}
-          <div class="row justify-content-center">
-            <div class="col-12" style="border: 2px solid black; border-radius: 10px; padding:1vh; margin-top: 1vh;">
-            У вас пока нет воспоминаний
-            </div>
-          </div>      
-        {% else %}
-        {% for i in remembers %} 
         <div class="row justify-content-center">
-          <div class="col-12" style="border: 2px solid black; border-radius: 10px; padding:1vh; margin-top: 1vh;">
+          <div
+            class="col-12"
+            style="
+              border: 2px solid black;
+              border-radius: 10px;
+              padding: 1vh;
+              margin-top: 1vh;
+            "
+          >
+            У вас пока нет воспоминаний
+          </div>
+        </div>
+        {% else %} {% for i in remembers %}
+        <div class="row justify-content-center">
+          <div
+            class="col-12"
+            style="
+              border: 2px solid black;
+              border-radius: 10px;
+              padding: 1vh;
+              margin-top: 1vh;
+            "
+          >
             <div class="container">
               <div class="row justify-content-end">
-                <div class="col-3">
-                  {{ i.1|truncatechars:5 }}
-                </div>
-                <div class="col-7" style="color: gray;">
-                  {{ i.2|truncatechars:9 }}...
+                <div class="col-3">{{ i.title|truncatechars:5 }}</div>
+                <div class="col-7" style="color: gray">
+                  {{ i.description|truncatechars:9 }}...
                 </div>
                 <div class="col-2">
-                  <button class="btn btn-outline-dark" onclick="document.location='/remember/{{ i.0 }}'">full</button>
+                  <button
+                    class="btn btn-outline-dark"
+                    onclick="document.location='/remember/{{ i.id }}'"
+                  >
+                    full
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {% endfor %}
-        {% endif %}
+        {% endfor %} {% endif %}
       </div>
     </div>
     <div class="col-6">
